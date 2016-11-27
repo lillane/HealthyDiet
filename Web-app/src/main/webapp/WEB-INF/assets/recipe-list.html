@@ -1,0 +1,17 @@
+<div class="page-header">
+    <h1>Recipes</h1>
+</div>
+
+<ul>
+    <li ng-repeat="recipe in recipes">
+        <h3>
+            <a href="#/recipe/{{recipe.id}}">{{recipe.name}}</a>
+        </h3>
+        <p class="lead">
+            <a href="#/recipe/{{recipe.id}}">
+                {{recipe.description}}
+            </a>
+        </p>
+        <br/>
+    </li>
+</ul>

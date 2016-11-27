@@ -1,0 +1,32 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: #868585;
+    background: #fdfcfb;
+    font-weight: normal;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+/*Large Devices, Wide Screens */
+@media only screen and (max-width: 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 992px) {
+
+}
+
+/*Small Devices, Tablets*/
+@media only screen and (max-width: 767px) {
+
+}
+
+/*Extra Small Devices, Phones*/
+@media only screen and (max-width: 480px) {
+
+}

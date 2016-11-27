@@ -1,0 +1,19 @@
+<div class="page-header">
+    <h1>{{recipe.name}}</h1>
+</div>
+
+<p>
+    <a href="#/category/{{recipe.category.id}}">{{recipe.category.name}}</a>
+
+    <br>
+    {{recipe.description}}
+
+    <ul>
+        <li ng-repeat="product in recipe.products">
+            {{product.name}}
+
+
+        </li>
+    </ul>
+
+</p>
