@@ -4,25 +4,19 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-/**
- * Created by Яна on 27.10.2016.
- */
-
 @Entity
 @Table(name = "products")
-public class Product {
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name="increment", strategy = "increment")
-    @Column(name="id")
-    private int id;
+public class Product extends BaseModel {
+
     @Column(name="name")
     private String name;
-    // Нормы на 100г. продукта:
+
     @Column(name="kcal")
     private double kcal;
+
     @Column(name="proteins")
     private double proteins;
+
     @Column(name="fats")
     private double fats;
 
@@ -36,7 +30,7 @@ public class Product {
     private Set<Recipe> recipes = new HashSet<Recipe>(); */
 
     public Product (int id, String name, double kcal, double proteins, double fats, double carbohydrates){
-        this.id = id;
+        super.setId(id);
         this.name = name;
         this.kcal = kcal;
         this.proteins = proteins;
@@ -46,51 +40,48 @@ public class Product {
 
     public Product (){}
 
+    @Override
     public void setId(int id) {
-        this.id = id;
+        super.setId(id);
+    }
+    @Override
+    public int getId() {
+        return super.getId();
     }
 
     public void setName(String name) {
         this.name = name;
     }
+    public String getName() {
+        return name;
+    }
 
     public void setProteins(double proteins) {
         this.proteins = proteins;
+    }
+    public double getProteins() {
+        return proteins;
     }
 
     public void setKcal(double kcal) {
         this.kcal = kcal;
     }
+    public double getKcal() {
+        return kcal;
+    }
 
     public void setFats(double fats) {
         this.fats = fats;
+    }
+    public double getFats() {
+        return fats;
     }
 
     public void setCarbohydrates(double carbohydrates) {
         this.carbohydrates = carbohydrates;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getKcal() {
-        return kcal;
-    }
-
-    public double getProteins() {
-        return proteins;
-    }
-
-    public double getFats() {
-        return fats;
-    }
-
     public double getCarbohydrates() {
         return carbohydrates;
     }
+
 }

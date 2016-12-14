@@ -3,77 +3,65 @@ package com.healthydiet.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-/**
- * Created by Яна on 27.10.2016.
- */
 @Entity
 @Table(name = "recipes")
-public class Recipe {
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name="increment", strategy = "increment")
-    @Column(name="id")
-    private int id;
+public class Recipe extends BaseModel{
+
     @Column(name = "name")
     private String name;
 
+    @Column(name = "description")
+    private String description;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_id")
-    private Category category; // вид блюда
-
-    @Column(name = "description")
-    private String description; //описание
+    private RecipeType recipeType;
 
     @ManyToMany
     @JoinTable(name = "recipe_to_product",
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> products; // набор продуктов, входящих в состав
+    private Set<Product> products;
 
 
-    // геттеры и сеттеры. связь многие ко многим,
 
-
+    @Override
     public void setId(int id) {
-        this.id = id;
+        super.setId(id);
+    }
+    @Override
+    public int getId() {
+        return super.getId();
     }
 
     public void setName(String name) {
         this.name = name;
     }
+    public String getName() {
+        return name;
+    }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setRecipeType(RecipeType recipeType) {
+        this.recipeType = recipeType;
+    }
+    public RecipeType getRecipeType() {
+        return recipeType;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public List<Product> getProducts() {
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 }
