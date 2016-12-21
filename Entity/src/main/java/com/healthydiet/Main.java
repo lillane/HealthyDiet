@@ -1,6 +1,6 @@
 package com.healthydiet;
 
-import com.healthydiet.implementations.ProductDAOImpl;
+import com.healthydiet.dao.daoImpl.ProductDAOImpl;
 
 import java.sql.SQLException;
 

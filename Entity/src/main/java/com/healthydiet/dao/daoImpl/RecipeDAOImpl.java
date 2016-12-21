@@ -1,7 +1,7 @@
-package com.healthydiet.implementations;
+package com.healthydiet.dao.daoImpl;
 
 import com.healthydiet.entity.Recipe;
-import com.healthydiet.interfaces.RecipeDAO;
+import com.healthydiet.dao.RecipeDAO;
 import com.healthydiet.utils.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -85,7 +85,7 @@ public class RecipeDAOImpl implements RecipeDAO {
     }
 
 
-    public List<Recipe> getRecipes(int categoryId) throws SQLException{
+    public List<Recipe> getRecipes(int recipeTypeId) throws SQLException{
         Session session = null;
         List<Recipe> recipeList = null;
 
@@ -96,7 +96,7 @@ public class RecipeDAOImpl implements RecipeDAO {
             asc - по возрастанию, desc - по убыванию.
             Order - класс, который формирует сортировку. */
             criteria.addOrder(Order.asc("name")); //задаем сортировку по полю name
-            criteria.add(Restrictions.eq("category.id", categoryId));
+            criteria.add(Restrictions.eq("recipeType.id", recipeTypeId));
             recipeList = criteria.list();
 
         } catch (Exception e) {

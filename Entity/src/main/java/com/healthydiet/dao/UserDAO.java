@@ -1,4 +1,4 @@
-package com.healthydiet.interfaces;
+package com.healthydiet.dao;
 
 import com.healthydiet.entity.User;
 

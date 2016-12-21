@@ -1,13 +1,11 @@
-package com.healthydiet.interfaces;
+package com.healthydiet.dao;
 
 import com.healthydiet.entity.Recipe;
 
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by Яна on 05.11.2016.
- */
+
 public interface RecipeDAO {
     public void addRecipe(Recipe recipe) throws SQLException;
     public void updateRecipe(Recipe recipe) throws SQLException;

@@ -1,30 +1,25 @@
-package com.healthydiet.implementations;
+package com.healthydiet.dao.daoImpl;
 
-import com.healthydiet.entity.Category;
-import com.healthydiet.interfaces.CategoryDAO;
+import com.healthydiet.dao.RecipeTypeDAO;
+import com.healthydiet.entity.RecipeType;
 import com.healthydiet.utils.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
-
 import javax.swing.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-
-/**
- * Created by Яна on 29.10.2016.
- */
-public class CategoryDAOImpl implements CategoryDAO {
-    public List<Category> getCategories() throws SQLException{
+public class RecipeTypeDAOImpl implements RecipeTypeDAO {
+    public Set<RecipeType> getRecipeTypes() throws SQLException{
         Session session = null;
-        List<Category> categoryList = new ArrayList<Category>();
+        Set<RecipeType> recipeTypeList = new HashSet<RecipeType>() {
+        };
         try{
             session = HibernateUtil.getSessionFactory().openSession();
-            Criteria criteria = session.createCriteria(Category.class);
+            Criteria criteria = session.createCriteria(RecipeType.class);
             criteria.addOrder(Order.asc("name"));
-            categoryList = criteria.list();
+            recipeTypeList = (Set<RecipeType>) criteria.list();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка сохранения", JOptionPane.OK_OPTION);
@@ -33,15 +28,15 @@ public class CategoryDAOImpl implements CategoryDAO {
                 session.close();
             }
         }
-        return categoryList;
+        return recipeTypeList;
     }
 
-    public Category getCategoryById(int id) throws SQLException{
+    public RecipeType getRecipeTypeById(int id) throws SQLException{
         Session session = null;
-        Category category = null;
+        RecipeType recipeType = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            category = (Category) session.load(Category.class, id);
+            recipeType = (RecipeType) session.load(RecipeType.class, id);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка запроса", JOptionPane.OK_OPTION);
         } finally {
@@ -49,7 +44,7 @@ public class CategoryDAOImpl implements CategoryDAO {
                 session.close();
             }
         }
-        return category;
+        return recipeType;
     }
 
 }

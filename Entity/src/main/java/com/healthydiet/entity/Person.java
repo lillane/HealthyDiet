@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="person")
-public class Person {
+public class Person extends BaseModel{
 
     @Column(name="firstname")
     private String firstName;
@@ -24,5 +24,6 @@ public class Person {
     private String phoneNumber;
 
     public Person(){}
+
 
 }

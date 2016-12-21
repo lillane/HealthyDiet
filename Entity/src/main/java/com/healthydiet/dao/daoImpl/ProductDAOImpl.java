@@ -1,7 +1,7 @@
-package com.healthydiet.implementations;
+package com.healthydiet.dao.daoImpl;
 
 import com.healthydiet.entity.Product;
-import com.healthydiet.interfaces.ProductDAO;
+import com.healthydiet.dao.ProductDAO;
 import com.healthydiet.utils.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -11,8 +11,9 @@ import org.hibernate.criterion.Restrictions;
 import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -84,14 +85,14 @@ public class ProductDAOImpl implements ProductDAO {
         return product;
     }
 
-    public List<Product> getProducts() throws SQLException{
+    public Set<Product> getProducts() throws SQLException{
         Session session = null;
-        List<Product> productList = new ArrayList<Product>();
+        Set<Product> productSet = new HashSet<Product>();
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             Criteria criteria = session.createCriteria(Product.class);
             criteria.addOrder(Order.asc("name"));
-            productList = criteria.list();
+            productSet = (Set<Product>) criteria.list();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка сохранения", JOptionPane.OK_OPTION);
@@ -100,18 +101,18 @@ public class ProductDAOImpl implements ProductDAO {
                 session.close();
             }
         }
-        return productList;
+        return productSet;
     }
 
-    public List<Product> getProducts(List id) throws SQLException{
+    public Set<Product> getProducts(Set id) throws SQLException{
         Session session = null;
-        List<Product> productList = new ArrayList<Product>();
+        Set<Product> productSet = new HashSet<Product>();
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             Criteria criteria = session.createCriteria(Product.class);
             criteria.add(Restrictions.in("id", id));
             criteria.addOrder(Order.asc("name"));
-            productList = criteria.list();
+            productSet = (Set<Product>) criteria.list();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка сохранения", JOptionPane.OK_OPTION);
@@ -120,7 +121,7 @@ public class ProductDAOImpl implements ProductDAO {
                 session.close();
             }
         }
-        return productList;
+        return productSet;
     }
 
 

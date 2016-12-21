@@ -1,11 +1,11 @@
 package com.healthydiet.controller;
 
-import com.healthydiet.entity.Category;
 import com.healthydiet.entity.Product;
+import com.healthydiet.entity.RecipeType;
 import com.healthydiet.entity.Recipe;
-import com.healthydiet.implementations.CategoryDAOImpl;
-import com.healthydiet.implementations.ProductDAOImpl;
-import com.healthydiet.implementations.RecipeDAOImpl;
+import com.healthydiet.dao.daoImpl.RecipeTypeDAOImpl;
+import com.healthydiet.dao.daoImpl.ProductDAOImpl;
+import com.healthydiet.dao.daoImpl.RecipeDAOImpl;
 import com.healthydiet.utils.JsonMap;
 import org.json.simple.JSONObject;
 
@@ -17,7 +17,9 @@ import javax.swing.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class RecipeServlet extends HttpServlet {
@@ -33,10 +35,10 @@ public class RecipeServlet extends HttpServlet {
             id = Integer.parseInt(idString);
         }
 
-        int categoryId = 0;
-        String categoryIdString = req.getParameter("categoryId");
-        if (null != categoryIdString && categoryIdString.length() > 0) {
-            categoryId = Integer.parseInt(categoryIdString);
+        int recipeTypeId = 0;
+        String recipeTypeIdString = req.getParameter("recipeTypeId");
+        if (null != recipeTypeIdString && recipeTypeIdString.length() > 0) {
+            recipeTypeId = Integer.parseInt(recipeTypeIdString);
         }
         JSONObject json = new JSONObject();
 //
@@ -47,7 +49,7 @@ public class RecipeServlet extends HttpServlet {
                 Recipe recipe = recipeDAO.getRecipeById(id);
                 json.put("recipes", JsonMap.recipeToJson(recipe));
             } else {
-                List<Recipe> recipes = recipeDAO.getRecipes(categoryId);
+                List<Recipe> recipes = recipeDAO.getRecipes(recipeTypeId);
 
                 json.put("recipes", JsonMap.recipeToJson(recipes));
             }
@@ -65,15 +67,15 @@ public class RecipeServlet extends HttpServlet {
 
         String name = req.getParameter("name");
         String description = req.getParameter("description");
-        String categoryIdString = req.getParameter("categoryId");
-        int categoryId = 0;
-        if (null != categoryIdString && categoryIdString.length() > 0) {
-            categoryId = Integer.parseInt(categoryIdString);
+        String recipeTypeIdString = req.getParameter("recipeTypeId");
+        int recipeTypeId = 0;
+        if (null != recipeTypeIdString && recipeTypeIdString.length() > 0) {
+            recipeTypeId = Integer.parseInt(recipeTypeIdString);
         }
         String products = req.getParameter("products");
 
 
-        List<Integer> productIds = new ArrayList<Integer>();
+        Set<Integer> productIds = new HashSet<Integer>();
         for (String productIdStr : products.split(",")) {
             productIds.add(Integer.parseInt(productIdStr));
         }
@@ -83,9 +85,9 @@ public class RecipeServlet extends HttpServlet {
         recipe.setDescription(description);
         try {
 
-            CategoryDAOImpl categoryDAO = new CategoryDAOImpl();
-            Category category = categoryDAO.getCategoryById(categoryId);
-            recipe.setCategory(category);
+            RecipeTypeDAOImpl recipeTypeDAO = new RecipeTypeDAOImpl();
+            RecipeType recipeType = recipeTypeDAO.getRecipeTypeById(recipeTypeId);
+            recipe.setRecipeType(recipeType);
 
             ProductDAOImpl productDAO = new ProductDAOImpl();
             recipe.setProducts(productDAO.getProducts(productIds));
@@ -138,13 +140,13 @@ public class RecipeServlet extends HttpServlet {
 
         String name = req.getParameter("name");
         String description = req.getParameter("description");
-        String categoryIdString = req.getParameter("categoryId");
-        int categoryId = 0;
-        if (null != categoryIdString && categoryIdString.length() > 0) {
-            categoryId = Integer.parseInt(categoryIdString);
+        String recipeTypeIdString = req.getParameter("recipeTypeId");
+        int recipeTypeId = 0;
+        if (null != recipeTypeIdString && recipeTypeIdString.length() > 0) {
+            recipeTypeId = Integer.parseInt(recipeTypeIdString);
         }
         String products = req.getParameter("products");
-        List<Integer> productIds = new ArrayList<Integer>();
+        Set<Integer> productIds = new HashSet<Integer>();
         for (String productIdStr : products.split(",")) {
             productIds.add(Integer.parseInt(productIdStr));
         }
@@ -156,9 +158,9 @@ public class RecipeServlet extends HttpServlet {
 
         try {
 
-            CategoryDAOImpl categoryDAO = new CategoryDAOImpl();
-            Category category = categoryDAO.getCategoryById(categoryId);
-            recipe.setCategory(category);
+            RecipeTypeDAOImpl recipeTypeDAO = new RecipeTypeDAOImpl();
+            RecipeType recipeType = recipeTypeDAO.getRecipeTypeById(recipeTypeId);
+            recipe.setRecipeType(recipeType);
 
             ProductDAOImpl productDAO = new ProductDAOImpl();
             recipe.setProducts(productDAO.getProducts(productIds));

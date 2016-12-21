@@ -1,6 +1,6 @@
 package com.healthydiet.controller;
 
-import com.healthydiet.implementations.CategoryDAOImpl;
+import com.healthydiet.dao.daoImpl.RecipeTypeDAOImpl;
 import com.healthydiet.utils.JsonMap;
 import org.json.simple.JSONObject;
 
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-public class CategoryServlet extends HttpServlet {
+public class RecipeTypeServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -22,8 +22,8 @@ public class CategoryServlet extends HttpServlet {
         JSONObject json = new JSONObject();
 
         try {
-            CategoryDAOImpl categoryDAO = new CategoryDAOImpl();
-            json.put("categories", JsonMap.categoryToJson(categoryDAO.getCategories()));
+            RecipeTypeDAOImpl recipeTypeDAO = new RecipeTypeDAOImpl();
+            json.put("recipeTypes", JsonMap.recipeTypeToJson(recipeTypeDAO.getRecipeTypes()));
 
             PrintWriter pw = resp.getWriter();
             pw.println(json.toJSONString());

@@ -1,7 +1,7 @@
 package web;
 
 
-import com.healthydiet.implementations.ProductDAOImpl;
+import com.healthydiet.dao.daoImpl.ProductDAOImpl;
 
 import java.sql.SQLException;
 

@@ -1,7 +1,7 @@
-package com.healthydiet.implementations;
+package com.healthydiet.dao.daoImpl;
 
 import com.healthydiet.entity.User;
-import com.healthydiet.interfaces.UserDAO;
+import com.healthydiet.dao.UserDAO;
 import com.healthydiet.utils.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;

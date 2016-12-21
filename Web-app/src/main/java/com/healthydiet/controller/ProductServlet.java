@@ -1,7 +1,7 @@
 package com.healthydiet.controller;
 
 import com.healthydiet.entity.Product;
-import com.healthydiet.implementations.ProductDAOImpl;
+import com.healthydiet.dao.daoImpl.ProductDAOImpl;
 import com.healthydiet.utils.JsonMap;
 import org.json.simple.JSONObject;
 

@@ -1,7 +1,7 @@
 package com.healthydiet.utils;
 
 
-import com.healthydiet.entity.Category;
+import com.healthydiet.entity.RecipeType;
 import com.healthydiet.entity.Product;
 import com.healthydiet.entity.Recipe;
 import org.json.simple.JSONArray;
@@ -35,7 +35,7 @@ public class JsonMap {
         JSONObject obj = new JSONObject();
         obj.put("id", recipe.getId());
         obj.put("name", recipe.getName());
-        obj.put("category", categoryToJson(recipe.getCategory()));
+        obj.put("recipeType", recipeTypeToJson(recipe.getRecipeType()));
         obj.put("description", recipe.getDescription());
 
         obj.put("products", productToJson(recipe.getProducts()));
@@ -51,18 +51,18 @@ public class JsonMap {
         return list;
     }
 
-    public static JSONObject categoryToJson(Category category) {
+    public static JSONObject recipeTypeToJson(RecipeType recipeType) {
         JSONObject obj = new JSONObject();
-        obj.put("id", category.getId());
-        obj.put("name", category.getName());
+        obj.put("id", recipeType.getId());
+        obj.put("name", recipeType.getName());
 
         return obj;
     }
 
-    public static JSONArray categoryToJson(Collection<Category> categoryList) {
+    public static JSONArray recipeTypeToJson(Collection<RecipeType> recipeTypeList) {
         JSONArray list = new JSONArray();
-        for (Category category : categoryList) {
-            list.add(categoryToJson(category));
+        for (RecipeType recipeType : recipeTypeList) {
+            list.add(recipeTypeToJson(recipeType));
         }
         return list;
     }

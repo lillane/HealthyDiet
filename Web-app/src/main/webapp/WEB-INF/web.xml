@@ -19,7 +19,7 @@
   </servlet>
   <servlet>
     <servlet-name>categoryServlet</servlet-name>
-    <servlet-class>com.healthydiet.controller.CategoryServlet</servlet-class>
+    <servlet-class>com.healthydiet.controller.RecipeTypeServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
