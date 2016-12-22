@@ -12,7 +12,7 @@
         <property name="connection.pool_size">10</property>
         <property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
         <property name="hibernate.connection.autocommit">false</property>
         <property name="current_session_context_class">thread</property>
 
@@ -23,7 +23,7 @@
         <mapping class="com.healthydiet.entity.Product" />
         <mapping class="com.healthydiet.entity.User" />
         <mapping class="com.healthydiet.entity.Recipe" />
-        <mapping class="com.healthydiet.entity.Category" />
+        <mapping class="com.healthydiet.entity.RecipeType" />
 
     </session-factory>
 </hibernate-configuration>

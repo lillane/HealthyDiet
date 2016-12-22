@@ -13,16 +13,18 @@
         <module>Web-app</module>
     </modules>
 
+    <packaging>pom</packaging>
+
     <build>
         <plugins>
-            <plugin>
-                <groupId>HealthyDiet</groupId>
-                <artifactId>HealthyDiet</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>HealthyDiet</groupId>-->
+                <!--<artifactId>HealthyDiet</artifactId>-->
+                <!--<configuration>-->
+                    <!--<source>1.8</source>-->
+                    <!--<target>1.8</target>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -38,6 +40,12 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.12</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
