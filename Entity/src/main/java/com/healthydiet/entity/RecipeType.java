@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "recipe_types")
+@Table(name = "recipeTypes")
 public @Data class RecipeType extends BaseModel{
 
     @Column(name="name")
     private String name;
 
-    @OneToMany(fetch= FetchType.LAZY, mappedBy = "recipe_type", cascade = CascadeType.ALL)
+    @OneToMany(fetch= FetchType.LAZY, mappedBy = "recipeType", cascade = CascadeType.ALL)
     private Set<Recipe> recipes;
 
     public RecipeType(int id, String name){
