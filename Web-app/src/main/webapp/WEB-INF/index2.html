@@ -52,7 +52,7 @@
     }
     $http.get('/recipeType').then(function (response) {
     console.log(response);
-    $scope.categories = response.data.categories;
+    $scope.recipeTypes = response.data.recipeTypes;
     });
     $http.get('/product').then(function (response) {
     console.log(response);

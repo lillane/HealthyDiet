@@ -5,7 +5,7 @@
      color: #1d1f1d;
      font-size: 14px;
      line-height: 24px;
-     font-weight: 500;
+     font-weight: 100;
  }
 
  .header a{
@@ -18,7 +18,7 @@
 
 .header-content{
     background-color: #e8f0e9;
-
+    height: 62px;
 }
 
 .header-top-contacts{
@@ -30,11 +30,11 @@
 }
 
 .header-content-left{
-    padding: 10px 0px 10px 0px;
+    padding: 12px 0px 12px 0px;
     margin: auto 0;
     align-items: center;
     display: flex;
-    height: 62px;
+    /*height: 62px;*/
     justify-content: flex-start;
 }
 
