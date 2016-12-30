@@ -2,72 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>№1</title>
 
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.js"></script>
-    <script>
-        var HealthyDietApp = angular.module("HealthyDietApp", ['ngRoute']);
+    <!--<script>-->
+        <!--var HealthyDietApp = angular.module("HealthyDietApp", ['ngRoute']);-->
 
-        HealthyDietApp.controller('MenuController', ['$scope', '$http', function ($scope, $http) {
-            $http.get('/category').then(function (response) {
-                console.log(response);
-                $scope.categories = response.data.categories;
-            });
-        }]);
+        <!--HealthyDietApp.controller('MenuController', ['$scope', '$http', function ($scope, $http) {-->
+            <!--$http.get('/category').then(function (response) {-->
+                <!--console.log(response);-->
+                <!--$scope.recipeTypes = response.data.recipeTypes;-->
+            <!--});-->
+        <!--}]);-->
 
-        HealthyDietApp.controller('RecipeListController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
-            $http.get('/recipe?categoryId=' + $routeParams.categoryId).then(function (response) {
-                console.log(response);
-                $scope.recipes = response.data.recipes;
-            });
-        }]);
+        <!--HealthyDietApp.controller('RecipeListController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {-->
+            <!--$http.get('/recipe?categoryId=' + $routeParams.categoryId).then(function (response) {-->
+                <!--console.log(response);-->
+                <!--$scope.recipes = response.data.recipes;-->
+            <!--});-->
+        <!--}]);-->
 
-        HealthyDietApp.controller('RecipeController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
-            $http.get('/recipe?id=' + $routeParams.id).then(function (response) {
-                console.log(response);
-                $scope.recipe = response.data.recipes;
-            });
-        }]);
+        <!--HealthyDietApp.controller('RecipeController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {-->
+            <!--$http.get('/recipe?id=' + $routeParams.id).then(function (response) {-->
+                <!--console.log(response);-->
+                <!--$scope.recipe = response.data.recipes;-->
+            <!--});-->
+        <!--}]);-->
 
-        HealthyDietApp.controller('RecipeAddController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
-            $scope.addRecipe = function(recipe) {
-                console.log(recipe);
+        <!--HealthyDietApp.controller('RecipeAddController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {-->
+            <!--$scope.addRecipe = function(recipe) {-->
+                <!--console.log(recipe);-->
 
-                var query = Object.keys(recipe).map(function(k) {
-                    return encodeURIComponent(k) + "=" + encodeURIComponent(recipe[k]);
-                }).join('&');
+                <!--var query = Object.keys(recipe).map(function(k) {-->
+                    <!--return encodeURIComponent(k) + "=" + encodeURIComponent(recipe[k]);-->
+                <!--}).join('&');-->
 
-                $http.post('/recipe?' + query).then(function (response) {
-                    console.log(response);
-
-
-                });
-            }
-            $http.get('/category').then(function (response) {
-                console.log(response);
-                $scope.categories = response.data.categories;
-            });
-            $http.get('/product').then(function (response) {
-                console.log(response);
-                $scope.products = response.data.products;
-            });
-        }]);
+                <!--$http.post('/recipe?' + query).then(function (response) {-->
+                    <!--console.log(response);-->
 
 
-        HealthyDietApp.config(function($routeProvider){
-            $routeProvider
-                    .when('/home', { templateUrl: 'assets/home.html' } )
-                    .when('/category/:categoryId', { controller: 'RecipeListController', templateUrl: 'assets/recipe-list.html' } )
-                    .when('/recipe/:id', { controller: 'RecipeController', templateUrl: 'assets/recipe.html' } )
-                    .when('/recipe-add', { controller: 'RecipeAddController', templateUrl: 'assets/add-recipe.html' } )
-                    .otherwise( { redirectTo: '/home' } );
-        });
+                <!--});-->
+            <!--}-->
+            <!--$http.get('/category').then(function (response) {-->
+                <!--console.log(response);-->
+                <!--$scope.categories = response.data.categories;-->
+            <!--});-->
+            <!--$http.get('/product').then(function (response) {-->
+                <!--console.log(response);-->
+                <!--$scope.products = response.data.products;-->
+            <!--});-->
+        <!--}]);-->
 
-    </script>
+
+        <!--HealthyDietApp.config(function($routeProvider){-->
+            <!--$routeProvider-->
+                    <!--.when('/home', { templateUrl: 'assets/home.html' } )-->
+                    <!--.when('/recipeType/:recipeTypeId', { controller: 'RecipeListController', templateUrl: 'assets/recipe-list.html' } )-->
+                    <!--.when('/recipe/:id', { controller: 'RecipeController', templateUrl: 'assets/recipe.html' } )-->
+                    <!--.when('/recipe-add', { controller: 'RecipeAddController', templateUrl: 'assets/add-recipe.html' } )-->
+                    <!--.otherwise( { redirectTo: '/home' } );-->
+        <!--});-->
+
+    <!--</script>-->
 
 </head>
 
@@ -137,6 +137,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
 
 </body>
 </html>

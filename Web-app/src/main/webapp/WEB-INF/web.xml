@@ -18,7 +18,7 @@
     <servlet-class>com.healthydiet.controller.ProductServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>categoryServlet</servlet-name>
+    <servlet-name>recipeTypeServlet</servlet-name>
     <servlet-class>com.healthydiet.controller.RecipeTypeServlet</servlet-class>
   </servlet>
 
@@ -33,7 +33,7 @@
   </servlet-mapping>
 
   <servlet-mapping>
-    <servlet-name>categoryServlet</servlet-name>
+    <servlet-name>recipeTypeServlet</servlet-name>
     <url-pattern>/category</url-pattern>
   </servlet-mapping>
 

@@ -1,5 +1,6 @@
 package com.healthydiet.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "recipes")
-public class Recipe extends BaseModel{
+public @Data class Recipe extends BaseModel{
 
     @Column(name = "name")
     private String name;
@@ -25,43 +26,37 @@ public class Recipe extends BaseModel{
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> products;
 
-
-
-    @Override
-    public void setId(int id) {
-        super.setId(id);
-    }
-    @Override
-    public int getId() {
-        return super.getId();
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public void setRecipeType(RecipeType recipeType) {
-        this.recipeType = recipeType;
-    }
-    public RecipeType getRecipeType() {
-        return recipeType;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public String getDescription() {
-        return description;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-    public Set<Product> getProducts() {
-        return products;
-    }
+//    @Override
+//    public int getId() {
+//        return super.getId();
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setRecipeType(RecipeType recipeType) {
+//        this.recipeType = recipeType;
+//    }
+//    public RecipeType getRecipeType() {
+//        return recipeType;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setProducts(Set<Product> products) {
+//        this.products = products;
+//    }
+//    public Set<Product> getProducts() {
+//        return products;
+//    }
 
 }

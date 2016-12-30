@@ -1,25 +1,35 @@
 package com.healthydiet.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @MappedSuperclass
 public abstract class BaseModel {
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name="increment", strategy = "increment")
-    @Column(name="id")
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected Integer id;
+
+    public int getId() {
+        return this.id;
+    }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getId() {
-        return id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BaseModel baseModel = (BaseModel) o;
+
+        return id.equals(baseModel.id);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        hash = hash * 31 + (id == null ? 0 : id.hashCode());
+        return hash;
     }
 }

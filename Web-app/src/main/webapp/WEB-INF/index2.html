@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Healthy Diet</title>
+
+    <!--<link rel="stylesheet" href="css/bootstrap.css">-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+
+    <script>
+    var HealthyDietApp = angular.module("HealthyDietApp", ['ngRoute']);
+
+    HealthyDietApp.controller('MenuController', ['$scope', '$http', function ($scope, $http) {
+    $http.get('/recipeType').then(function (response) {
+    console.log(response);
+    $scope.recipeTypes = response.data.recipeTypes;
+    });
+    }]);
+
+    HealthyDietApp.controller('RecipeListController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+    $http.get('/recipe?recipeTypeId=' + $routeParams.recipeTypeId).then(function (response) {
+    console.log(response);
+    $scope.recipes = response.data.recipes;
+    });
+    }]);
+
+    HealthyDietApp.controller('RecipeController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+    $http.get('/recipe?id=' + $routeParams.id).then(function (response) {
+    console.log(response);
+    $scope.recipe = response.data.recipes;
+    });
+    }]);
+
+    HealthyDietApp.controller('RecipeAddController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+    $scope.addRecipe = function(recipe) {
+    console.log(recipe);
+
+    var query = Object.keys(recipe).map(function(k) {
+    return encodeURIComponent(k) + "=" + encodeURIComponent(recipe[k]);
+    }).join('&');
+
+    $http.post('/recipe?' + query).then(function (response) {
+    console.log(response);
+
+
+    });
+    }
+    $http.get('/recipeType').then(function (response) {
+    console.log(response);
+    $scope.categories = response.data.categories;
+    });
+    $http.get('/product').then(function (response) {
+    console.log(response);
+    $scope.products = response.data.products;
+    });
+    }]);
+
+
+    HealthyDietApp.config(function($routeProvider){
+    $routeProvider
+    .when('/home', { templateUrl: 'assets/home.html' } )
+    .when('/recipeType/:recipeTypeId', { controller: 'RecipeListController', templateUrl: 'assets/recipe-list.html' } )
+    .when('/recipe/:id', { controller: 'RecipeController', templateUrl: 'assets/recipe.html' } )
+    .when('/recipe-add', { controller: 'RecipeAddController', templateUrl: 'assets/add-recipe.html' } )
+    .otherwise( { redirectTo: '/home' } );
+    });
+
+    </script>
+
+</head>
+<body ng-app="HealthyDietApp">
+
+    <header class="g-theme-block-0">
+        <!--navbar navbar-default navbar-static-top-->
+        <div class="header container-fluid">
+            <div class="row">
+                <div class="header-top container">
+                    <div class="row">
+                        <div class="header-top-contacts col-xs-12 col-sm-12 col-md-7 col-lg-8">
+                            телефон, эмейл, скайп
+                        </div>
+                        <div class="header-top-social col-xs-12 col-sm-12 col-md-5 col-lg-4">
+                            иконки соц.сетей
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-content container-fluid">
+                    <div class="row">
+                        <div class="container">
+                            <div class="row">
+                                <div class="header-content-left col-xs-12 col-sm-12 col-md-3 col-lg-4">
+                                    <div class="header-content-left-logo" data-widget="icon" data-icon-set="fontAwesome" data-is-icon-font-loaded="true">
+                                        <div class="icon-widget-span">
+                                            <a href="#/home"><span class="glyphicon glyphicon-cutlery g-color-text-header icon-size-30 " aria-hidden="true"></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="header-content-left-header">
+                                        <a> Healthy Diet </a>
+                                    </div>
+                                </div>
+                                <div class="header-content-right collapse navbar-collapse col-xs-12 col-sm-12 col-md-9 col-lg-8">
+                                    <ul class="nav navbar-nav header-content-right-nav">
+                                    <!--<ul>-->
+                                        <li class="active"><a> Главная </a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Рецепты <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li ng-repeat="recipeType in recipeTypes"><a href="#/recipeType/{{recipeType.id}}">{{recipeType.name}}</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a>Калорийность продуктов</a></li>
+                                        <li><a>Калькулятор каллорий</a></li>
+                                        <li><a>Составь своё меню</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </header>
+
+
+
+
+
+    <!--end menu-->
+<!--</div>-->
+
+
+
+
+
+
+
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5862e1992db9caa1"></script>
+</body>
+</html>
